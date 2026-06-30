@@ -3,21 +3,22 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
-   const navigate = useNavigate();   // missing line
+   const navigate = useNavigate();
 
    const [username, setUsername] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
 
+   const API_URL = import.meta.env.VITE_API_URL;
+
    const handleRegister = async () => {
       try {
          const res = await axios.post(
-            "http://localhost:3000/api/auth/register",
+            `${API_URL}/api/auth/register`,
             { username, email, password }
          );
 
          alert(res.data.message);
-
          navigate("/login");
 
       } catch (error) {

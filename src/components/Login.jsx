@@ -8,10 +8,12 @@ function Login() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
 
+   const API_URL = import.meta.env.VITE_API_URL;
+
    const handleLogin = async () => {
       try {
          const res = await axios.post(
-            "http://localhost:3000/api/auth/login",
+            `${API_URL}/api/auth/login`,
             { email, password }
          );
 
@@ -19,7 +21,6 @@ function Login() {
 
          alert(res.data.message);
 
-         // Redirect to home page
          navigate("/home");
 
       } catch (error) {
